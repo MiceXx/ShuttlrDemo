@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_profile"
+        android:icon="@drawable/icon_account"
+        android:title="Profile"
+        app:showAsAction="always" />
+
+    <item
+        android:title="@string/app_name"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/action_map"
+        android:title="View Map"
+        android:icon="@drawable/icon_map"
+        app:showAsAction="always"/>
+
+</menu>

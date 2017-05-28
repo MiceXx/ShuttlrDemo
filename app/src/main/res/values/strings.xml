@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ShuttlrDemo</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_request_ride">RequestRideActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="formatted_place_data">
+        Name: %1$s\nAddress: %2$s\nPhone: %3$s\nWebsite: %4$s\n
+    </string>
+
+</resources>

@@ -1,0 +1,112 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorBlue"
+    tools:context="com.accmxxgmail.shuttlrdemo.RequestRideActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlue"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_close"
+                android:id="@+id/button_close"
+                android:clickable="true"
+                android:onClick="CloseScreen"
+                android:tint="@color/colorWhite"
+                android:layout_gravity="end"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:text="Sit tight\n Your ride is on its way!"
+                android:textColor="@color/colorWhite"
+                android:textSize="34dp"
+                android:layout_marginBottom="24dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="20dp"
+                android:background="@color/colorGrey"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:gravity="center"
+                    android:text="321 Placeholder Sreet, Unit 99"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/colorWhite" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_arrow_down"
+                        android:tint="@color/colorWhite"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_margin="10dp"
+                        android:textSize="20dp"
+                        android:text="456 Placeholder Ave"
+                        android:textColor="@color/colorWhite" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/colorGrey"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginEnd="70dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:text="Today's Date"
+                        android:textSize="20dp"
+                        android:gravity="center"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/colorGrey"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginEnd="70dp"/>
+
+            <Button
+                android:layout_width="200dp"
+                android:text="Track My Ride"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:background="@drawable/format_curved_edge_button_wg"
+                android:backgroundTint="@color/colorLightGrey"
+                android:onClick="TrackRide"
+                android:padding="6dp"
+                android:textColor="@color/colorBlue" />
+
+        </LinearLayout>
+
+</FrameLayout>

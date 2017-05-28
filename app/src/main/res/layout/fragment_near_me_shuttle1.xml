@@ -1,0 +1,63 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.accmxxgmail.shuttlrdemo.NearMeShuttle1Fragment">
+
+    <LinearLayout
+        android:id="@+id/bar_shuttle_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLightGrey"
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/main_scroller_top_bot"
+        android:paddingLeft="@dimen/main_scroller_left_right"
+        android:paddingRight="@dimen/main_scroller_left_right"
+        android:paddingTop="@dimen/main_scroller_top_bot">
+
+        <ImageButton
+            android:layout_width="@dimen/main_car_icon_size"
+            android:layout_height="@dimen/main_car_icon_size"
+            android:layout_gravity="center"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/icon_car_wifi" />
+
+        <ImageButton
+            android:layout_width="@dimen/main_center_icon_size"
+            android:layout_height="@dimen/main_center_icon_size"
+            android:layout_gravity="center"
+            android:layout_marginRight="18dp"
+            android:background="@drawable/icon_map_marker"
+            android:backgroundTint="@color/colorDarkGrey"
+            android:id="@+id/button_locate_1"/>
+
+        <ImageButton
+            android:layout_width="@dimen/main_center_icon_size"
+            android:layout_height="@dimen/main_center_icon_size"
+            android:layout_gravity="center"
+            android:layout_marginRight="18dp"
+            android:background="@drawable/icon_empty_star"
+            android:backgroundTint="@color/colorBlue"
+            android:id="@+id/button_star_1"/>
+
+        <ImageButton
+            android:layout_width="@dimen/main_center_icon_size"
+            android:layout_height="@dimen/main_center_icon_size"
+            android:layout_gravity="center"
+            android:layout_marginRight="18dp"
+            android:background="@drawable/icon_question_mark"
+            android:id="@+id/button_help_1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="end"
+            android:text="3 Min"
+            android:textColor="@color/colorBlack"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,8 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="main_scroller_top_bot">17dp</dimen>
+    <dimen name="main_scroller_left_right">18dp</dimen>
+    <dimen name="main_center_icon_size">30dp</dimen>
+    <dimen name="main_car_icon_size">50dp</dimen>
+    <dimen name="activity_horizontal_margin">20dp</dimen>
+</resources>

@@ -1,0 +1,222 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorBlue"
+    tools:context="com.accmxxgmail.shuttlrdemo.RequestRideActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlue"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlue"
+            android:theme="@style/AppTheme.AppBarOverlay"></TextView>
+
+
+        <TextView
+            android:id="@+id/request_text_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="Please confirm your request details"
+            android:textColor="@color/colorWhite"
+            android:textSize="24dp" />
+
+        <!--
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginTop="-15dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/icon_lock" />
+            -->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ToggleButton
+                android:id="@+id/toggle_one_time"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/format_curved_edge_button_wg"
+                android:padding="6dp"
+                android:textColor="@color/colorDarkGrey"
+                android:textOff="Single Trip"
+                android:textOn="Single Trip" />
+
+            <ToggleButton
+                android:id="@+id/toggle_recurring"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/format_curved_edge_button_wg"
+                android:padding="6dp"
+                android:textColor="@color/colorDarkGrey"
+                android:textOff="Recurring"
+                android:textOn="Recurring" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:paddingStart="40dp"
+            android:paddingEnd="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/pickup_location_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_home" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textSize="15dp"
+                android:text="Pickup"
+                android:layout_below="@id/pickup_location_icon"
+                android:textColor="@color/colorWhite"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:gravity="center"
+                android:text="321 Placeholder Street, Unit 99\n A1B 2C3 Canada"
+                android:textColor="@color/colorWhite" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorGrey"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:paddingStart="40dp"
+            android:paddingEnd="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/destination_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_flag" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textSize="15dp"
+                android:text="Dropoff"
+                android:layout_below="@id/destination_icon"
+                android:textColor="@color/colorWhite"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="456 Placeholder Ave\n C3B 2A1 Canada"
+                android:textColor="@color/colorWhite"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:id="@+id/text_total_cost"
+                android:layout_height="match_parent"
+                android:textSize="20dp"
+                android:paddingLeft="10dp"
+                android:text=""
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"/>
+            <ToggleButton
+                android:layout_width="30dp"
+                android:id="@+id/toggle_question_mark"
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/icon_question_mark"
+                android:textOff=""
+                android:checked="false"
+                android:visibility="gone"
+                android:textOn=""/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_book_trip"
+            android:layout_width="200dp"
+            android:text="Book Trip"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:onClick="SuccessfullyBooked"
+            android:background="@drawable/format_curved_edge_button_rg"
+            android:padding="6dp"
+            android:enabled="false"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/text_go_back"
+            android:layout_width="match_parent"
+            android:text="Go back"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:onClick="GoBack"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:layout_marginTop="9dp"
+            android:textColor="@color/colorLightGrey" />
+
+        <!--
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.accmxxgmail.shuttlrdemo.MapsActivity" />
+        -->
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

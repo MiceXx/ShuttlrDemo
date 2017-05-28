@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_login"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:elevation="3dp">
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shuttlr Demo"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/colorGrey"
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:textSize="26sp"
+                    />
+    </android.support.v7.widget.Toolbar>
+
+
+    <ImageButton
+        android:layout_below="@+id/toolbar_login"
+        android:id="@+id/main_screen_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/icon_logo"
+        android:elevation="4dp"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/main_screen_photo"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical"
+            android:paddingTop="30dp">
+
+            <EditText
+                android:id="@+id/text_username"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/icon_username"
+                android:drawableTint="@color/colorBlack"
+                android:hint="User Name"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/colorGrey" />
+            <EditText
+                android:id="@+id/text_password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableLeft="@drawable/icon_lock"
+                android:drawableTint="@color/colorBlack"
+                android:hint="Password"
+                android:textColorHint="@color/colorGrey"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/link_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:paddingTop="5dp"
+                android:text="Forgot Password?"
+                android:textColor="@color/colorGrey" />
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:background="@drawable/format_curved_edge_button_bw"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="22sp" />
+
+            <TextView android:id="@+id/link_signup"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="No account yet? Create one"
+                android:gravity="center"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+
+</RelativeLayout>

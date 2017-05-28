@@ -1,0 +1,95 @@
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:context="com.accmxxgmail.shuttlrdemo.MapsActivity" />
+
+    <LinearLayout
+        android:id="@+id/map_activity_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/autocomplete_map_search"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:textSize="16dp"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:maxLines="1"
+                android:paddingEnd="10dp"
+                android:singleLine="true"
+                android:paddingRight="10dp"
+                android:background="@drawable/format_curved_edge_button_wg"
+                android:backgroundTint="@color/colorWhite"
+                android:hint="Enter a Location"
+                android:textColor="@color/colorBlack"
+                android:drawableRight="@drawable/icon_close"
+                android:drawableTint="@color/colorDarkGrey"
+                android:textColorHint="@color/colorLightGrey">
+            <requestFocus/>
+                </AutoCompleteTextView>
+
+        <Button
+            android:layout_width="40dp"
+            android:id="@+id/button_search_map"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorBlue"
+            android:background="@drawable/icon_arrow_right_bold_circle"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edit_text_map"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:textSize="16dp"
+        android:gravity="center_vertical"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:maxLines="1"
+        android:paddingEnd="10dp"
+        android:layout_margin="10dp"
+        android:singleLine="true"
+        android:paddingRight="10dp"
+        android:background="@drawable/format_curved_edge_button_wg"
+        android:backgroundTint="@color/colorWhite"
+        android:hint="Enter a Location"
+        android:textColor="@color/colorBlack"
+        android:drawableRight="@drawable/icon_close"
+        android:drawableTint="@color/colorDarkGrey"
+        android:textColorHint="@color/colorLightGrey">
+    </EditText>
+
+    <ImageButton
+        android:id="@+id/myMapLocationButton"
+        android:layout_alignBottom="@id/map"
+        android:layout_alignEnd="@id/map"
+        android:layout_alignRight="@id/map"
+        android:layout_margin="10dp"
+        android:elevation="2dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/colorLightGrey"
+        android:onClick="LocateSelf"
+        android:src="@drawable/icon_crosshairs_gps"
+        android:tint="@color/colorRed"
+        />
+
+</RelativeLayout>
