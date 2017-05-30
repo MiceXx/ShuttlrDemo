@@ -40,9 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         //getSupportActionBar().setElevation(2);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login);
+        //setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         ButterKnife.inject(this);
 

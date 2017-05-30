@@ -6,6 +6,9 @@
     <string name="title_activity_request_ride">RequestRideActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <string name="formatted_place_data">
         Name: %1$s\nAddress: %2$s\nPhone: %3$s\nWebsite: %4$s\n
     </string>

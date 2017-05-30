@@ -22,28 +22,30 @@
         android:layout_marginRight="20dp"
         android:layout_marginEnd="20dp">
 
-            <AutoCompleteTextView
-                android:id="@+id/autocomplete_map_search"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="40dp"
-                android:textSize="16dp"
-                android:gravity="center_vertical"
-                android:paddingStart="10dp"
-                android:paddingLeft="10dp"
-                android:maxLines="1"
-                android:paddingEnd="10dp"
-                android:singleLine="true"
-                android:paddingRight="10dp"
-                android:background="@drawable/format_curved_edge_button_wg"
-                android:backgroundTint="@color/colorWhite"
-                android:hint="Enter a Location"
-                android:textColor="@color/colorBlack"
-                android:drawableRight="@drawable/icon_close"
-                android:drawableTint="@color/colorDarkGrey"
-                android:textColorHint="@color/colorLightGrey">
+        <EditText
+            android:id="@+id/edit_text_map"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:textSize="16dp"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:maxLines="1"
+            android:paddingEnd="10dp"
+            android:layout_margin="10dp"
+            android:singleLine="true"
+            android:paddingRight="10dp"
+            android:background="@drawable/format_curved_edge_button_wg"
+            android:backgroundTint="@color/colorWhite"
+            android:hint="Enter a Location"
+            android:textColor="@color/colorBlack"
+            android:drawableRight="@drawable/icon_close"
+            android:drawableTint="@color/colorDarkGrey"
+            android:textColorHint="@color/colorLightGrey">
             <requestFocus/>
-                </AutoCompleteTextView>
+        </EditText>
 
         <Button
             android:layout_width="40dp"
@@ -54,28 +56,6 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/edit_text_map"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:textSize="16dp"
-        android:gravity="center_vertical"
-        android:paddingStart="10dp"
-        android:paddingLeft="10dp"
-        android:maxLines="1"
-        android:paddingEnd="10dp"
-        android:layout_margin="10dp"
-        android:singleLine="true"
-        android:paddingRight="10dp"
-        android:background="@drawable/format_curved_edge_button_wg"
-        android:backgroundTint="@color/colorWhite"
-        android:hint="Enter a Location"
-        android:textColor="@color/colorBlack"
-        android:drawableRight="@drawable/icon_close"
-        android:drawableTint="@color/colorDarkGrey"
-        android:textColorHint="@color/colorLightGrey">
-    </EditText>
 
     <ImageButton
         android:id="@+id/myMapLocationButton"
