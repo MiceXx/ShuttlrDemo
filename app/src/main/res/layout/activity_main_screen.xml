@@ -67,12 +67,6 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/parent_scroll">
-
-
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_marginTop="55dp"
             android:layout_width="match_parent"
@@ -169,8 +163,6 @@
             </ScrollView>
 
         </LinearLayout>
-
-        </ScrollView>
 
         <RelativeLayout
             android:id="@+id/rlOverlay"

@@ -72,7 +72,8 @@
         <activity android:name=".PaymentActivity" />
         <activity android:name=".LegalActivity" />
         <activity android:name=".AboutSidebarActivity" />
-        <activity android:name=".ReportBugActivity"></activity>
+        <activity android:name=".ReportBugActivity" />
+        <activity android:name=".FirstTImeUserActivity"></activity>
     </application>
 
 </manifest>
