@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "397178529527",
+    "firebase_url": "https://active-mountain-168417.firebaseio.com",
+    "project_id": "active-mountain-168417",
+    "storage_bucket": "active-mountain-168417.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397178529527:android:776d3452f64dbeba",
+        "android_client_info": {
+          "package_name": "com.accmxxgmail.shuttlrdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397178529527-phj1j1pd1lfgdfuooheput9dgfl1oqda.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFcb4ysiZY0Oy2QhO8fMZo9aOqiQyH5u4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

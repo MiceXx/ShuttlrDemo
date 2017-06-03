@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:orientation="vertical"
+    android:paddingTop="30dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Recent Trips"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        />
+    <View
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDarkGrey"/>
+
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="List of recent trips"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"/>
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:textStyle="bold"
+        android:elevation="5dp"
+        android:text="UNDER CONSTRUCTION"
+        android:gravity="center"
+        android:textSize="36sp"/>
+</LinearLayout>
