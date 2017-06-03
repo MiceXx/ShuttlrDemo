@@ -12,7 +12,7 @@
     android:paddingTop="8dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView"
+        android:id="@+id/nav_header_profile_photo"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:src="@drawable/golden"
@@ -21,6 +21,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
+        android:id="@+id/nav_header_profile_and_company"
         android:orientation="vertical"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp">
@@ -28,6 +29,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/nav_header_profile_name"
             android:paddingTop="18dp"
             android:text="Profile Name"
             android:textSize="22dp"
@@ -35,7 +37,7 @@
             android:textColor="#FFF"/>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/nav_header_company_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Company Name"

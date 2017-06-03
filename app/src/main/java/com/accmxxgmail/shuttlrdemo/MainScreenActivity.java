@@ -12,10 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
+import android.widget.TextView;
+
 
 public class MainScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -64,6 +64,7 @@ public class MainScreenActivity extends AppCompatActivity
         rlOverlay = (RelativeLayout) findViewById(R.id.rlOverlay);
         rlOverlay.setVisibility(View.GONE);
 
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -71,6 +72,10 @@ public class MainScreenActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
+        if(id == R.id.nav_header_profile_and_company){
+
+        }
 
         if (id == R.id.nav_payment) {
             startActivity(new Intent(this,PaymentActivity.class));
