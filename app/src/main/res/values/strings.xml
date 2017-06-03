@@ -12,5 +12,18 @@
     <string name="formatted_place_data">
         Name: %1$s\nAddress: %2$s\nPhone: %3$s\nWebsite: %4$s\n
     </string>
+    <string name="string_request_ride_single_trip">Single Trip</string>
+    <string name="string_request_ride_recurring">Recurring</string>
+    <string name="string_request_ride_pickup">Pickup</string>
+    <string name="dropoff_image">Dropoff Image</string>
+    <string name="request_ride_header_text">Please confirm your request details</string>
+    <string name="go_back_text">Go back</string>
+    <string name="book_trip_button_text">Book Trip</string>
+    <string name="copyright_text">© Shuttlr Canada</string>
+    <string name="legal_page_main_text">Don\'t cheat\n  Don\'t plagarize\n  Don\'t be an asshole</string>
+    <string name="activity_bar_name">Shuttlr Demo</string>
+    <string name="main_button_top">Request a Ride</string>
+    <string name="main_button_bottom">Check Ride Status</string>
+    <string name="shuttlrs_near_me">Shuttles Near me</string>
 
 </resources>

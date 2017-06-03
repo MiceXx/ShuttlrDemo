@@ -2,16 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBlue"
     tools:context="com.accmxxgmail.shuttlrdemo.RequestRideActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorBlue"
         android:orientation="vertical">
 
@@ -20,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorBlue"
-            android:theme="@style/AppTheme.AppBarOverlay"></TextView>
-
+            android:theme="@style/AppTheme.AppBarOverlay"/>
 
         <TextView
             android:id="@+id/request_text_top"
@@ -29,20 +24,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:text="Please confirm your request details"
+            android:text="@string/request_ride_header_text"
             android:textColor="@color/colorWhite"
-            android:textSize="24dp" />
-
-        <!--
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_marginTop="-15dp"
-            android:layout_marginBottom="30dp"
-            android:src="@drawable/icon_lock" />
-            -->
+            android:textSize="@dimen/subheader_text_size" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -50,29 +34,33 @@
 
             <ToggleButton
                 android:id="@+id/toggle_one_time"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/medium_button_width"
+                android:layout_height="@dimen/medium_button_height"
                 android:layout_margin="20dp"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/format_curved_edge_button_wg"
-                android:padding="6dp"
+                android:padding="@dimen/button_padding"
                 android:textColor="@color/colorDarkGrey"
-                android:textOff="Single Trip"
-                android:textOn="Single Trip" />
+                android:textSize="@dimen/small_text_size"
+                android:textOff="@string/string_request_ride_single_trip"
+                android:textOn="@string/string_request_ride_single_trip" />
 
             <ToggleButton
                 android:id="@+id/toggle_recurring"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/medium_button_width"
+                android:layout_height="@dimen/medium_button_height"
                 android:layout_margin="20dp"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/format_curved_edge_button_wg"
-                android:padding="6dp"
+                android:padding="@dimen/button_padding"
+                android:textSize="@dimen/small_text_size"
                 android:textColor="@color/colorDarkGrey"
-                android:textOff="Recurring"
-                android:textOn="Recurring" />
+                android:textOff="@string/string_request_ride_recurring"
+                android:textOn="@string/string_request_ride_recurring"/>
 
         </RelativeLayout>
 
@@ -83,7 +71,9 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:paddingStart="40dp"
-            android:paddingEnd="@dimen/activity_horizontal_margin">
+            android:paddingLeft="40dp"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingRight="20dp">
 
             <ImageView
                 android:id="@+id/pickup_location_icon"
@@ -95,17 +85,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:textSize="15dp"
-                android:text="Pickup"
+                android:textSize="@dimen/small_text_size"
+                android:text="@string/string_request_ride_pickup"
                 android:layout_below="@id/pickup_location_icon"
                 android:textColor="@color/colorWhite"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toRightOf="@id/pickup_location_icon"
+                android:layout_toEndOf="@id/pickup_location_icon"
                 android:gravity="center"
                 android:text="321 Placeholder Street, Unit 99\n A1B 2C3 Canada"
+                android:textSize="@dimen/small_text_size"
                 android:textColor="@color/colorWhite" />
 
         </RelativeLayout>
@@ -123,10 +115,13 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:paddingStart="40dp"
-            android:paddingEnd="@dimen/activity_horizontal_margin">
+            android:paddingLeft="40dp"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingRight="20dp">
 
             <ImageView
                 android:id="@+id/destination_icon"
+                android:contentDescription="@string/dropoff_image"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerVertical="true"
@@ -135,7 +130,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:textSize="15dp"
+                android:textSize="@dimen/small_text_size"
                 android:text="Dropoff"
                 android:layout_below="@id/destination_icon"
                 android:textColor="@color/colorWhite"/>
@@ -145,10 +140,10 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="456 Placeholder Ave\n C3B 2A1 Canada"
-                android:textColor="@color/colorWhite"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_toRightOf="@id/destination_icon"
+                android:layout_toEndOf="@id/destination_icon"
+                android:textSize="@dimen/small_text_size"
+                android:textColor="@color/colorWhite" />
 
         </RelativeLayout>
 
@@ -159,11 +154,11 @@
             android:layout_height="40dp">
 
             <TextView
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:id="@+id/text_total_cost"
                 android:layout_height="match_parent"
                 android:textSize="20dp"
-                android:paddingLeft="10dp"
+                android:gravity="center"
                 android:text=""
                 android:layout_weight="1"
                 android:textAlignment="center"
@@ -173,6 +168,7 @@
                 android:id="@+id/toggle_question_mark"
                 android:layout_height="30dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/icon_question_mark"
                 android:textOff=""
                 android:checked="false"
@@ -182,41 +178,28 @@
 
         <Button
             android:id="@+id/button_book_trip"
-            android:layout_width="200dp"
-            android:text="Book Trip"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/long_button_width"
+            android:text="@string/book_trip_button_text"
+            android:layout_height="@dimen/medium_button_height"
             android:layout_gravity="center"
             android:onClick="SuccessfullyBooked"
             android:background="@drawable/format_curved_edge_button_rg"
-            android:padding="6dp"
+            android:padding="@dimen/button_padding"
             android:enabled="false"
             android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/text_go_back"
             android:layout_width="match_parent"
-            android:text="Go back"
+            android:text="@string/go_back_text"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
+            android:textSize="@dimen/xsmall_text_size"
             android:onClick="GoBack"
             android:textAlignment="center"
             android:clickable="true"
             android:layout_marginTop="9dp"
             android:textColor="@color/colorLightGrey" />
 
-        <!--
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:map="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="com.accmxxgmail.shuttlrdemo.MapsActivity" />
-        -->
-
     </LinearLayout>
-
-    </ScrollView>
 
 </FrameLayout>

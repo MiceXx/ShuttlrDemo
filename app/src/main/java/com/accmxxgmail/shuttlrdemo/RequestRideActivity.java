@@ -1,18 +1,13 @@
 package com.accmxxgmail.shuttlrdemo;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.widget.Button;
@@ -42,7 +37,9 @@ public class RequestRideActivity extends AppCompatActivity {
         toggleOneTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(toggleOneTime.isChecked()){
+                toggleOneTime.setChecked(true);
+                toggleOneTime.setPressed(true);
+                if(toggleRecurring.isChecked()){
                     toggleRecurring.setChecked(false);
                 }
 
@@ -53,7 +50,9 @@ public class RequestRideActivity extends AppCompatActivity {
         toggleRecurring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(toggleRecurring.isChecked()){
+                toggleRecurring.setChecked(true);
+                toggleRecurring.setPressed(true);
+                if(toggleOneTime.isChecked()){
                     toggleOneTime.setChecked(false);
                 }
                 ComputeCost();

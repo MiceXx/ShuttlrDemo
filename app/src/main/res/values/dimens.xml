@@ -5,4 +5,12 @@
     <dimen name="main_center_icon_size">30dp</dimen>
     <dimen name="main_car_icon_size">50dp</dimen>
     <dimen name="activity_horizontal_margin">20dp</dimen>
+    <dimen name="activity_vertical_margin">20dp</dimen>
+    <dimen name="small_text_size">16sp</dimen>
+    <dimen name="xsmall_text_size">12sp</dimen>
+    <dimen name="subheader_text_size">24sp</dimen>
+    <dimen name="medium_button_width">150dp</dimen>
+    <dimen name="medium_button_height">50dp</dimen>
+    <dimen name="button_padding">6dp</dimen>
+    <dimen name="long_button_width">250dp</dimen>
 </resources>

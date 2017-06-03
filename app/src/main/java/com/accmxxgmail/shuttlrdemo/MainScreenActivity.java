@@ -1,23 +1,25 @@
 package com.accmxxgmail.shuttlrdemo;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 public class MainScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
+
+    private RelativeLayout rlOverlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,15 @@ public class MainScreenActivity extends AppCompatActivity
                 }
             }
         });
+
+        ChangeFragment(new NearMeShuttleFragment(), R.id.fragment_near_me_place1);
+        ChangeFragment(new NearMeShuttleFragment(), R.id.fragment_near_me_place2);
+        ChangeFragment(new NearMeShuttleFragment(), R.id.fragment_near_me_place3);
+        ChangeFragment(new NearMeShuttleFragment(), R.id.fragment_near_me_place4);
+
+        rlOverlay = (RelativeLayout) findViewById(R.id.rlOverlay);
+        rlOverlay.setVisibility(View.GONE);
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -61,32 +72,35 @@ public class MainScreenActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_payment) {
-            // Handle the camera action
-        } else if (id == R.id.nav_recent) {
-
-        } else if (id == R.id.nav_help) {
-
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_logout) {
-
-        } else if (id == R.id.nav_legal) {
-
-        } else if (id == R.id.nav_about) {
-
-        } else if (id == R.id.nav_report) {
-
+            startActivity(new Intent(this,PaymentActivity.class));
+        }
+        else if (id == R.id.nav_recent) {
+            startActivity(new Intent(this,RecentTripsActivity.class));
+        }
+        else if (id == R.id.nav_help) {
+            rlOverlay.setVisibility(View.VISIBLE);
+        }
+        else if (id == R.id.nav_settings) {
+            startActivity(new Intent(this,SettingsActivity.class));
+        }
+        else if (id == R.id.nav_logout) {
+            finish();
+            startActivity(new Intent(this,LoginActivity.class));
+        }
+        else if (id == R.id.nav_legal) {
+            startActivity(new Intent(this,LegalActivity.class));
+        }
+        else if (id == R.id.nav_about) {
+            startActivity(new Intent(this,AboutSidebarActivity.class));
+        }
+        else if (id == R.id.nav_report) {
+            startActivity(new Intent(this,ReportBugActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    public void toolbarClickProfile(View view) {
-        Toast.makeText(MainScreenActivity.this, "Profile Under construction", Toast.LENGTH_SHORT).show();
-    }
-
     public void toolbarClickMap(View view){
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
@@ -101,4 +115,17 @@ public class MainScreenActivity extends AppCompatActivity
 
     }
 
+    public void ChangeFragment(Fragment fragment, int resource){
+        FragmentManager fmanager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fmanager.beginTransaction();
+        fragmentTransaction.replace(resource,fragment);
+        fragmentTransaction.commit();
+    }
+
+
+    public void onHelpScreenClick(View view) {
+        if (rlOverlay.getVisibility()!=View.GONE) {
+            rlOverlay.setVisibility(View.GONE);
+        }
+    }
 }

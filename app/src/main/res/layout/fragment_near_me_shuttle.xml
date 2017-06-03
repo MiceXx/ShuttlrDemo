@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.accmxxgmail.shuttlrdemo.NearMeShuttle1Fragment">
+    tools:context="com.accmxxgmail.shuttlrdemo.NearMeShuttleFragment">
 
     <LinearLayout
         android:id="@+id/bar_shuttle_1"
@@ -32,21 +32,26 @@
             android:backgroundTint="@color/colorDarkGrey"
             android:id="@+id/button_locate_1"/>
 
-        <ImageButton
+        <ToggleButton
             android:layout_width="@dimen/main_center_icon_size"
             android:layout_height="@dimen/main_center_icon_size"
             android:layout_gravity="center"
             android:layout_marginRight="18dp"
-            android:background="@drawable/icon_empty_star"
+            android:background="@drawable/icon_toggle_star"
+            android:textOff=""
+            android:textOn=""
             android:backgroundTint="@color/colorBlue"
-            android:id="@+id/button_star_1"/>
+            android:id="@+id/button_star_1"
+            />
 
-        <ImageButton
+        <ToggleButton
             android:layout_width="@dimen/main_center_icon_size"
             android:layout_height="@dimen/main_center_icon_size"
             android:layout_gravity="center"
             android:layout_marginRight="18dp"
-            android:background="@drawable/icon_question_mark"
+            android:textOff=""
+            android:textOn=""
+            android:background="@drawable/icon_toggle_question_mark"
             android:id="@+id/button_help_1"/>
 
         <TextView
@@ -54,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="end"
-            android:text="3 Min"
+            android:text="\?\? Min"
             android:textColor="@color/colorBlack"
             android:textSize="24sp" />
 

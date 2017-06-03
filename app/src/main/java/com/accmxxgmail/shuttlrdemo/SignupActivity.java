@@ -28,10 +28,6 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        //getSupportActionBar().setCustomView(R.layout.action_bar_login);
-        //getSupportActionBar().setElevation(2);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
