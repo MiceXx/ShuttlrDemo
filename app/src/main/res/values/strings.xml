@@ -25,5 +25,13 @@
     <string name="main_button_top">Request a Ride</string>
     <string name="main_button_bottom">Check Ride Status</string>
     <string name="shuttlrs_near_me">Shuttles Near me</string>
+    <string-array name="company_list">
+        <item>Select</item>
+        <item>Arcelor Mittal Dofasco</item>
+        <item>City of Hamilton</item>
+        <item>Hamilton Health Sciences</item>
+        <item>McMaster University</item>
+        <item>Other</item>
+    </string-array>
 
 </resources>

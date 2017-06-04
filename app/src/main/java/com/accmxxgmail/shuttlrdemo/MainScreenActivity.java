@@ -13,14 +13,26 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class MainScreenActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener, ValueEventListener{
 
     private RelativeLayout rlOverlay;
+    TextView profileName, companyName;
+
+    private DatabaseReference mRootReference = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference mNameReference = mRootReference.child("profilenamekey");
+    private DatabaseReference mCompanyReference = mRootReference.child("profilecompanykey");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +49,8 @@ public class MainScreenActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View header =navigationView.getHeaderView(0);
+
         navigationView.setNavigationItemSelectedListener(this);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -64,7 +78,39 @@ public class MainScreenActivity extends AppCompatActivity
         rlOverlay = (RelativeLayout) findViewById(R.id.rlOverlay);
         rlOverlay.setVisibility(View.GONE);
 
+        LinearLayout linearLayout = (LinearLayout)header.findViewById(R.id.nav_header_profile_and_company);
+        linearLayout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                startActivity(new Intent(MainScreenActivity.this,FirstTimeUserActivity.class));
+            }
+        });
 
+
+        profileName = (TextView)header.findViewById(R.id.nav_header_profile_name);
+        companyName = (TextView)header.findViewById(R.id.nav_header_profile_name);
+
+        mNameReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue(String.class)!=null) {
+                    String profileTextRetrieved = dataSnapshot.getValue(String.class);
+                    if (profileTextRetrieved.equals("Profile Name") || profileTextRetrieved.equals("")) {
+                        Intent intent = new Intent(MainScreenActivity.this, FirstTimeUserActivity.class);
+                        startActivity(intent);
+                    }
+                }
+                else{
+                    Intent intent = new Intent(MainScreenActivity.this, FirstTimeUserActivity.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -72,10 +118,6 @@ public class MainScreenActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if(id == R.id.nav_header_profile_and_company){
-
-        }
 
         if (id == R.id.nav_payment) {
             startActivity(new Intent(this,PaymentActivity.class));
@@ -128,10 +170,42 @@ public class MainScreenActivity extends AppCompatActivity
         fragmentTransaction.commit();
     }
 
-
     public void onHelpScreenClick(View view) {
         if (rlOverlay.getVisibility()!=View.GONE) {
             rlOverlay.setVisibility(View.GONE);
         }
     }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        mNameReference.addValueEventListener(this);
+        mCompanyReference.addValueEventListener(this);
+    }
+
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View header =navigationView.getHeaderView(0);
+        profileName = (TextView)header.findViewById(R.id.nav_header_profile_name);
+        companyName = (TextView)header.findViewById(R.id.nav_header_company_name);
+
+        if(dataSnapshot.getValue(String.class)!=null){
+            String key = dataSnapshot.getKey();
+            if(key.equals("profilenamekey")){
+                String profileTextRetrieved = dataSnapshot.getValue(String.class);
+                profileName.setText(profileTextRetrieved);
+            }
+            else if(key.equals("profilecompanykey")){
+                String companyTextRetrieved = dataSnapshot.getValue(String.class);
+                companyName.setText(companyTextRetrieved);
+            }
+        }
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
+    }
+
 }

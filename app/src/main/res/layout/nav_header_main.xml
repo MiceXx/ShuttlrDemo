@@ -23,6 +23,7 @@
         android:layout_height="match_parent"
         android:id="@+id/nav_header_profile_and_company"
         android:orientation="vertical"
+        android:clickable="true"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp">
 
@@ -30,9 +31,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nav_header_profile_name"
-            android:paddingTop="18dp"
+            android:paddingTop="18sp"
             android:text="Profile Name"
-            android:textSize="22dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="#FFF"/>
 
@@ -40,6 +41,7 @@
             android:id="@+id/nav_header_company_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             android:text="Company Name"
             android:textColor="#FFF"/>
     </LinearLayout>

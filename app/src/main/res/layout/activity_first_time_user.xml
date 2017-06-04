@@ -6,20 +6,26 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Edit Profile"
+        android:gravity="center"
+        android:background="@color/colorBlue"
+        android:textColor="@color/colorWhite"
+        android:layout_marginBottom="20dp"
+        android:textSize="@dimen/subheader_text_size"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="First Time User"
-            android:gravity="center"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/subheader_text_size"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,6 +35,10 @@
             />
         <EditText
             android:id="@+id/EditTextName"
+            android:maxLines="1"
+            android:maxLength="10"
+            android:inputType="textCapWords"
+            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -40,6 +50,9 @@
         <EditText
             android:id="@+id/EditTextEmail"
             android:layout_width="match_parent"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:singleLine="true"
             android:layout_height="wrap_content"/>
 
         <TextView
@@ -49,6 +62,9 @@
             android:text="Phone"/>
         <EditText
             android:id="@+id/EditTextPhone"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:inputType="phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -60,6 +76,8 @@
         <EditText
             android:id="@+id/EditTextAddress"
             android:layout_width="match_parent"
+            android:maxLines="1"
+            android:singleLine="true"
             android:layout_height="wrap_content"/>
 
         <TextView
@@ -68,7 +86,7 @@
             android:layout_marginTop="6dp"
             android:text="Company"/>
         <Spinner
-            android:id="@+id/EditTextCompany"
+            android:id="@+id/SpinnerCompany"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="3dp"/>
@@ -86,5 +104,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/medium_button_text_size" />
 
+        </LinearLayout>
     </LinearLayout>
+
 </ScrollView>

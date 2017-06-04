@@ -6,7 +6,7 @@ android {
     defaultConfig {
         multiDexEnabled true
         applicationId "com.accmxxgmail.shuttlrdemo"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -17,6 +17,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    dexOptions{
+        javaMaxHeapSize "2g"
     }
 }
 
@@ -41,10 +44,11 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.hotchemi:permissionsdispatcher:2.3.1'
-    compile 'com.craftman.cardform:cardform:0.0.2'
     compile 'com.github.medyo:android-about-page:1.2.1'
     compile 'com.github.hotchemi:permissionsdispatcher-processor:2.3.1'
     compile 'com.google.firebase:firebase-database:10.2.6'
+    compile 'com.braintreepayments:card-form:3.0.5'
+
     testCompile 'junit:junit:4.12'
 }
 
