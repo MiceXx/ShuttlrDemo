@@ -11,34 +11,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 public class LoginActivity extends AppCompatActivity {
-/*
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference mRootReference = firebaseDatabase.getReference();
-   String FIREBASE_URL = firebaseDatabase.getInstance().toString();
-    String key = mRootReference.getKey();
-*/
     private static final int REQUEST_SIGNUP = 0;
 
-    @InjectView(R.id.text_username) EditText _emailText;
-    @InjectView(R.id.text_password) EditText _passwordText;
-    @InjectView(R.id.button_login) Button _loginButton;
-    @InjectView(R.id.link_signup) TextView _signupLink;
-    @InjectView(R.id.link_forgot_password) TextView _forgotpasswordLink;
+    EditText _emailText;
+    EditText _passwordText;
+    Button _loginButton;
+    TextView _signupLink;
+    TextView _forgotpasswordLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ButterKnife.inject(this);
+        _emailText = (EditText)findViewById(R.id.text_username);
+        _passwordText = (EditText)findViewById(R.id.text_password);
+        _loginButton = (Button)findViewById(R.id.button_login);
+        _signupLink = (TextView)findViewById(R.id.link_signup);
+        _forgotpasswordLink = (TextView)findViewById(R.id.link_forgot_password);
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -114,8 +105,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginSuccess() {
      //   _loginButton.setEnabled(true);
         Intent intent = new Intent(this, MainScreenActivity.class);
-    //    intent.putExtra("FIREBASE_URL", FIREBASE_URL);
-     //   intent.putExtra("BOARD_ID", key);
         startActivity(intent);
     }
 

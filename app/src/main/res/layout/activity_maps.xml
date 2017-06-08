@@ -9,16 +9,21 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         tools:context="com.accmxxgmail.shuttlrdemo.MapsActivity" />
 
-    <fragment
-        android:layout_margin="20dp"
-        android:id="@+id/place_fragment"
-        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/format_curved_edge_button_wg"/>
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/format_curved_box_white">
+        <fragment
+            android:id="@+id/place_fragment"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+
 
 
     <ImageButton
@@ -33,7 +38,7 @@
         android:backgroundTint="@color/colorLightGrey"
         android:onClick="LocateSelf"
         android:src="@drawable/icon_crosshairs_gps"
-        android:tint="@color/colorRed"
+        android:tint="@color/colorBlue"
         />
 
 </RelativeLayout>

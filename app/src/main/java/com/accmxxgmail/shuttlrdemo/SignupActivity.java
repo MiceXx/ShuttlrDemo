@@ -1,10 +1,8 @@
 package com.accmxxgmail.shuttlrdemo;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,27 +10,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 public class SignupActivity extends AppCompatActivity {
 
-    @InjectView(R.id.text_create_name) EditText _nameText;
-    @InjectView(R.id.text_create_email) EditText _emailText;
-    @InjectView(R.id.text_create_password) EditText _passwordText;
-    @InjectView(R.id.button_create_account) Button _signupButton;
-    @InjectView(R.id.link_login) TextView _loginLink;
+    EditText _nameText;
+    EditText _emailText;
+    EditText _passwordText;
+    Button _signupButton;
+    TextView _loginLink;
+    EditText _confirmpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        ButterKnife.inject(this);
+        _nameText = (EditText)findViewById(R.id.text_create_email);
+        _emailText = (EditText)findViewById(R.id.text_create_name);
+        _passwordText = (EditText)findViewById(R.id.text_create_password);
+        _signupButton = (Button)findViewById(R.id.button_create_account);
+        _loginLink = (TextView)findViewById(R.id.link_login);
+        _confirmpassword = (EditText)findViewById(R.id.text_confirm_password);
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +99,7 @@ public class SignupActivity extends AppCompatActivity {
         String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
+        String confirmpassword = _confirmpassword.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
             _nameText.setError("at least 3 characters");
@@ -122,6 +120,13 @@ public class SignupActivity extends AppCompatActivity {
             valid = false;
         } else {
             _passwordText.setError(null);
+        }
+
+        if (!password.equals(confirmpassword)) {
+            _confirmpassword.setError("Passwords do not match");
+            valid = false;
+        } else {
+            _confirmpassword.setError(null);
         }
 
         return valid;
