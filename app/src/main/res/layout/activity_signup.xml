@@ -53,18 +53,6 @@
             android:gravity="center"
             android:textSize="20sp"/>
 
-        <!--  Name Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/text_create_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="Name" />
-        </android.support.design.widget.TextInputLayout>
 
         <!-- Email Label -->
         <android.support.design.widget.TextInputLayout
@@ -76,7 +64,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:hint="Email" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!--  Name Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/text_create_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:inputType="textCapWords"
+                android:hint="Name" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
@@ -88,6 +93,8 @@
             <EditText android:id="@+id/text_create_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:inputType="textPassword"
                 android:hint="Password"/>
         </android.support.design.widget.TextInputLayout>
@@ -100,6 +107,8 @@
             <EditText android:id="@+id/text_confirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:inputType="textPassword"
                 android:hint="Confirm Password"/>
         </android.support.design.widget.TextInputLayout>

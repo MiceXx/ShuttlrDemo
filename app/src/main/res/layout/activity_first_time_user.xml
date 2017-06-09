@@ -50,7 +50,8 @@
         <EditText
             android:id="@+id/EditTextEmail"
             android:layout_width="match_parent"
-            android:inputType="textEmailAddress"
+            android:inputType="none"
+            android:editable="false"
             android:maxLines="1"
             android:singleLine="true"
             android:layout_height="wrap_content"/>

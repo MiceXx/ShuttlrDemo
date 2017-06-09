@@ -30,9 +30,11 @@ public class MainScreenActivity extends AppCompatActivity
     private RelativeLayout rlOverlay;
     TextView profileName, companyName;
 
-    private DatabaseReference mRootReference = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference mNameReference = mRootReference.child("profilenamekey");
-    private DatabaseReference mCompanyReference = mRootReference.child("profilecompanykey");
+    String url = "https://active-mountain-168417.firebaseio.com/users/" + EncodeEmail(UserDetails.email);
+    private DatabaseReference mRootReference = FirebaseDatabase.getInstance().getReferenceFromUrl(url);
+    private DatabaseReference mNameReference = mRootReference.child("name");
+    private DatabaseReference mAddressReference = mRootReference.child("address");
+    private DatabaseReference mCompanyReference = mRootReference.child("company");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +97,28 @@ public class MainScreenActivity extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue(String.class)!=null) {
                     String profileTextRetrieved = dataSnapshot.getValue(String.class);
-                    if (profileTextRetrieved.equals("Profile Name") || profileTextRetrieved.equals("")) {
+                    if (profileTextRetrieved.equals("")) {
+                        Intent intent = new Intent(MainScreenActivity.this, FirstTimeUserActivity.class);
+                        startActivity(intent);
+                    }
+                }
+                else{
+                    Intent intent = new Intent(MainScreenActivity.this, FirstTimeUserActivity.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mAddressReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue(String.class)!=null) {
+                    String addressRetrieved = dataSnapshot.getValue(String.class);
+                    if (addressRetrieved.equals("")) {
                         Intent intent = new Intent(MainScreenActivity.this, FirstTimeUserActivity.class);
                         startActivity(intent);
                     }
@@ -132,8 +155,7 @@ public class MainScreenActivity extends AppCompatActivity
             startActivity(new Intent(this,SettingsActivity.class));
         }
         else if (id == R.id.nav_logout) {
-            finish();
-            startActivity(new Intent(this,LoginActivity.class));
+            //session.logoutUser();
         }
         else if (id == R.id.nav_legal) {
             startActivity(new Intent(this,LegalActivity.class));
@@ -192,11 +214,11 @@ public class MainScreenActivity extends AppCompatActivity
 
         if(dataSnapshot.getValue(String.class)!=null){
             String key = dataSnapshot.getKey();
-            if(key.equals("profilenamekey")){
+            if(key.equals("name")){
                 String profileTextRetrieved = dataSnapshot.getValue(String.class);
                 profileName.setText(profileTextRetrieved);
             }
-            else if(key.equals("profilecompanykey")){
+            else if(key.equals("company")){
                 String companyTextRetrieved = dataSnapshot.getValue(String.class);
                 companyName.setText(companyTextRetrieved);
             }
@@ -208,4 +230,7 @@ public class MainScreenActivity extends AppCompatActivity
 
     }
 
+    public static String EncodeEmail(String string){
+        return string.replace(".",",");
+    }
 }

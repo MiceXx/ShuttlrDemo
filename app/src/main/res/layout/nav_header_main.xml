@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/nav_header_profile_name"
             android:paddingTop="18sp"
-            android:text="Profile Name"
+            android:text=""
             android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="#FFF"/>
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:text="Company Name"
+            android:text=""
             android:textColor="#FFF"/>
     </LinearLayout>
 

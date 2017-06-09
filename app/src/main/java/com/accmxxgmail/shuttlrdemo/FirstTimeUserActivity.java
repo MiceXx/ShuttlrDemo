@@ -1,6 +1,7 @@
 package com.accmxxgmail.shuttlrdemo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,12 +22,12 @@ import java.util.List;
 
 public class FirstTimeUserActivity extends AppCompatActivity implements ValueEventListener{
 
-    private DatabaseReference mRootReference = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference mNameReference = mRootReference.child("profilenamekey");
-    private DatabaseReference mEmailReference = mRootReference.child("profileemailkey");
-    private DatabaseReference mPhoneReference = mRootReference.child("profilephonekey");
-    private DatabaseReference mAddressReference = mRootReference.child("profileaddresskey");
-    private DatabaseReference mCompanyReference = mRootReference.child("profilecompanykey");
+    String url = "https://active-mountain-168417.firebaseio.com/users/" + EncodeEmail(UserDetails.email);
+    private DatabaseReference mRootReference = FirebaseDatabase.getInstance().getReferenceFromUrl(url);
+    private DatabaseReference mNameReference = mRootReference.child("name");
+    private DatabaseReference mPhoneReference = mRootReference.child("phone");
+    private DatabaseReference mAddressReference = mRootReference.child("address");
+    private DatabaseReference mCompanyReference = mRootReference.child("company");
 
     private EditText editTextName, editTextEmail, editTextPhone, editTextAddress;
     Spinner spinner;
@@ -38,6 +39,9 @@ public class FirstTimeUserActivity extends AppCompatActivity implements ValueEve
 
         editTextName = (EditText) findViewById(R.id.EditTextName);
         editTextEmail = (EditText) findViewById(R.id.EditTextEmail);
+        editTextEmail.setHint(UserDetails.email);
+        editTextEmail.setHintTextColor(Color.parseColor("#696969"));
+
         editTextPhone = (EditText) findViewById(R.id.EditTextPhone);
         editTextAddress = (EditText) findViewById(R.id.EditTextAddress);
 
@@ -52,24 +56,24 @@ public class FirstTimeUserActivity extends AppCompatActivity implements ValueEve
             @Override
             public void onClick(View view){
                 String nameText = editTextName.getText().toString();
-                String emailText = editTextEmail.getText().toString();
                 String phoneText = editTextPhone.getText().toString();
                 String addressText = editTextAddress.getText().toString();
 
                 if(!nameText.isEmpty()){
+                    UserDetails.name = nameText;
                 mNameReference.setValue(nameText);}
 
-                if(!emailText.isEmpty()){
-                    mEmailReference.setValue(emailText);}
-
                 if(!phoneText.isEmpty()){
+                    UserDetails.phone = phoneText;
                     mPhoneReference.setValue(phoneText);}
 
                 if(!addressText.isEmpty()){
+                    UserDetails.address = addressText;
                     mAddressReference.setValue(addressText);}
 
                 String companyText= String.valueOf(spinner.getSelectedItem());
                 if(!companyText.equals("Select")){
+                    UserDetails.company = companyText;
                     mCompanyReference.setValue(companyText);}
                 finish();
             }
@@ -79,7 +83,6 @@ public class FirstTimeUserActivity extends AppCompatActivity implements ValueEve
     protected void onStart(){
         super.onStart();
         mNameReference.addListenerForSingleValueEvent(this);
-        mEmailReference.addListenerForSingleValueEvent(this);
         mPhoneReference.addListenerForSingleValueEvent(this);
         mAddressReference.addListenerForSingleValueEvent(this);
         mCompanyReference.addListenerForSingleValueEvent(this);
@@ -95,23 +98,19 @@ public class FirstTimeUserActivity extends AppCompatActivity implements ValueEve
 
         if(dataSnapshot.getValue(String.class)!=null){
             String key = dataSnapshot.getKey();
-            if(key.equals("profilenamekey")){
+            if(key.equals("name")){
                 String profileTextRetrieved = dataSnapshot.getValue(String.class);
                 editTextName.setHint(profileTextRetrieved);
             }
-            else if(key.equals("profileemailkey")){
-                String emailTextRetrieved = dataSnapshot.getValue(String.class);
-                editTextEmail.setHint(emailTextRetrieved);
-            }
-            else if(key.equals("profilephonekey")){
+            else if(key.equals("phone")){
                 String phoneTextRetrieved = dataSnapshot.getValue(String.class);
                 editTextPhone.setHint(phoneTextRetrieved);
             }
-            else if(key.equals("profileaddresskey")){
+            else if(key.equals("address")){
                 String addressTextRetrieved = dataSnapshot.getValue(String.class);
                 editTextAddress.setHint(addressTextRetrieved);
             }
-            else if(key.equals("profilecompanykey")){
+            else if(key.equals("company")){
                 String addressTextRetrieved = dataSnapshot.getValue(String.class);
                 spinner.setSelection(getIndex(spinner,addressTextRetrieved));
             }
@@ -133,5 +132,9 @@ public class FirstTimeUserActivity extends AppCompatActivity implements ValueEve
     @Override
     public void onCancelled(DatabaseError databaseError) {
 
+    }
+
+    public static String EncodeEmail(String string){
+        return string.replace(".",",");
     }
 }
