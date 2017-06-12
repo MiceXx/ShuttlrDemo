@@ -11,8 +11,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_SIGNUP = 0;
+
+    SessionManagement session;
 
     EditText _emailText;
     EditText _passwordText;
@@ -20,10 +32,15 @@ public class LoginActivity extends AppCompatActivity {
     TextView _signupLink;
     TextView _forgotpasswordLink;
 
+    String email;
+    String password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        session = new SessionManagement(getApplicationContext());
 
         _emailText = (EditText)findViewById(R.id.text_username);
         _passwordText = (EditText)findViewById(R.id.text_password);
@@ -36,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                login();
+                validate();
             }
         });
 
@@ -51,47 +68,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
-    public void login() {
-        Log.d("LoginActivity", "Login");
-
-        if (!validate()) {
-            onLoginFailed();
-            return;
-        }
-
-        _loginButton.setEnabled(false);
-
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.Theme_AppCompat_DayNight);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
-
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
-
-        // TODO: Implement your own authentication logic here.
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
-    }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
-
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
                 this.finish();
             }
         }
@@ -110,20 +90,66 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(LoginActivity.this, "zzzzzd", Toast.LENGTH_SHORT).show();
         _loginButton.setEnabled(true);
     }
 
     public boolean validate() {
-        boolean valid = true;
+        boolean valid = false;
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        email = EncodeEmail(_emailText.getText().toString());
+        password = _passwordText.getText().toString();
+        String url = "https://active-mountain-168417.firebaseio.com/users.json";
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
 
-        UserDetails.email = EncodeEmail(email);
-        UserDetails.password = password;
+            @Override
+            public void onResponse(String s) {
+                if(s.equals("null")){
+                }
+                else{
+                    try {
+                        JSONObject obj = new JSONObject(s);
+                        if(!obj.has(email)){
+                            Toast.makeText(LoginActivity.this, "user not found", Toast.LENGTH_SHORT).show();
+                        }
+                        else if(obj.getJSONObject(email).getString("password").equals(password)){
+                            UserDetails.email = email;
+                            UserDetails.password = password;
+                            session.createLoginSession(email,password);
+                            final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+                                    R.style.Theme_AppCompat_DayNight);
+                            progressDialog.setIndeterminate(true);
+                            progressDialog.setMessage("Authenticating...");
+                            progressDialog.show();
 
+                            String email = _emailText.getText().toString();
+                            String password = _passwordText.getText().toString();
+
+                            new android.os.Handler().postDelayed(
+                                    new Runnable() {
+                                        public void run() {
+                                            onLoginSuccess();
+                                            progressDialog.dismiss();
+                                        }
+                                    }, 3000);
+                        }
+                        else {
+                            Toast.makeText(LoginActivity.this, "incorrect password", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        },new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                System.out.println("" + volleyError);
+            }
+        });
+
+        RequestQueue rQueue = Volley.newRequestQueue(LoginActivity.this);
+        rQueue.add(request);
         return valid;
 
     }

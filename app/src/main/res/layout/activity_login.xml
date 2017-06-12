@@ -55,7 +55,7 @@
                 android:drawableLeft="@drawable/icon_username"
                 android:drawableStart="@drawable/icon_username"
                 android:drawableTint="@color/colorBlack"
-                android:hint="User Name"
+                android:hint="E-mail"
                 android:inputType="textEmailAddress"
                 android:textColorHint="@color/colorGrey" />
             <EditText

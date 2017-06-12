@@ -61,6 +61,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
 /*
         final EditText editText = (EditText) findViewById(R.id.edit_text_map);
         Button button = (Button) findViewById(R.id.button_search_map);
