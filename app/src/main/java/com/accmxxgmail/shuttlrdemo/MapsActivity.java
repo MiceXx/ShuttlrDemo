@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.FusedLocationProviderApi;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
@@ -44,6 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     LocationManager locationManager;
 
+    boolean initialized = false;
 
     private static final String LOG_TAG = "PlaceSelectionListener";
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
@@ -61,57 +63,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-/*
-        final EditText editText = (EditText) findViewById(R.id.edit_text_map);
-        Button button = (Button) findViewById(R.id.button_search_map);
-
-        locationTextView = (TextView) findViewById(R.id.txt_location);
-        attributionsTextView = (TextView) findViewById(R.id.txt_attributions);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                try {
-                    geoLocate();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        editText.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    try {
-                        geoLocate();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        editText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final int DRAWABLE_RIGHT = 2;
-
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= (editText.getRight() - editText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                        editText.setText("");
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
-*/
-
-
         //REQUEST PERMISSIONS
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -122,6 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             return;
         }
+
         if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
 
@@ -129,8 +81,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public void onLocationChanged(Location location) {
                     double lat = location.getLatitude();
                     double lng = location.getLongitude();
+                    if(!initialized){
+                        initialized = true;
+                        if(CurrentRequest.fragmentRequested!=0){
+                            goToLocationZoom(CurrentRequest.lat,CurrentRequest.lng,ZOOM);
+                            CurrentRequest.initialize();
+                        }
+                        else {
+                            goToLocationZoom(lat, lng, ZOOM);
+                        }
+                    }
                     moveLocationMarker(lat,lng);
-                    //goToLocationZoom(lat,lng,16);
                 }
 
                 @Override
@@ -155,6 +116,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public void onLocationChanged(Location location) {
                     double lat = location.getLatitude();
                     double lng = location.getLongitude();
+                    if(!initialized){
+                        initialized = true;
+                        if(CurrentRequest.fragmentRequested!=0){
+                            goToLocationZoom(CurrentRequest.lat,CurrentRequest.lng,ZOOM);
+                            CurrentRequest.initialize();
+                        }
+                        else {
+                            goToLocationZoom(lat, lng, ZOOM);
+                        }
+                    }
                     moveLocationMarker(lat,lng);
                 }
 
@@ -221,11 +192,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
 
             googleMap.setPadding(0,210,20,20);
-            //mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
-    //        double lat = location.getLatitude();
-     //       double lng = location.getLongitude();
-     //       goToLocationZoom(lat, lng, 16);
         }
 
     }
@@ -262,6 +229,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    finish();
+                    startActivity(getIntent());
 
                 } else {
                     finish();

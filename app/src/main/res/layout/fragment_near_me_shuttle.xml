@@ -58,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:id="@+id/near_me_time"
             android:gravity="end"
             android:text="\?\? Min"
             android:textColor="@color/colorBlack"

@@ -68,7 +68,7 @@
         <activity android:name=".LegalActivity" />
         <activity android:name=".AboutSidebarActivity" />
         <activity android:name=".ReportBugActivity" />
-        <activity android:name=".FirstTimeUserActivity"></activity>
+        <activity android:name=".FirstTimeUserActivity"/>
     </application>
 
 </manifest>

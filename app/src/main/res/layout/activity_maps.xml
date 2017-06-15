@@ -24,21 +24,4 @@
             />
     </LinearLayout>
 
-
-
-    <ImageButton
-        android:id="@+id/myMapLocationButton"
-        android:layout_alignBottom="@id/map"
-        android:layout_alignEnd="@id/map"
-        android:layout_alignRight="@id/map"
-        android:layout_margin="10dp"
-        android:elevation="2dp"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:backgroundTint="@color/colorLightGrey"
-        android:onClick="LocateSelf"
-        android:src="@drawable/icon_crosshairs_gps"
-        android:tint="@color/colorBlue"
-        />
-
 </RelativeLayout>

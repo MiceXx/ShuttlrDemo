@@ -20,14 +20,20 @@
        android:id="@+id/activity_main"
        android:padding="16dp">
 
+      <ImageView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+          android:id="@+id/paymentphoto"
+          android:src="@drawable/icon_credit_card"
+          android:layout_centerInParent="true"
+          android:layout_alignParentTop="true"/>
+
       <com.braintreepayments.cardform.view.CardForm
           android:id="@+id/card_form"
+          android:layout_below="@id/paymentphoto"
           android:layout_width="match_parent"
           android:layout_height="match_parent" />
 
    </RelativeLayout>
-
-
-
 
 </LinearLayout>

@@ -17,37 +17,25 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 
 public class MainScreenActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ValueEventListener{
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     private RelativeLayout rlOverlay;
     TextView profileName, companyName;
 
     SessionManagement session;
 
-    String url = "https://active-mountain-168417.firebaseio.com/users/" + EncodeEmail(UserDetails.email);
-    private DatabaseReference mRootReference = FirebaseDatabase.getInstance().getReferenceFromUrl(url);
-    private DatabaseReference mNameReference = mRootReference.child("name");
-    private DatabaseReference mAddressReference = mRootReference.child("address");
-    private DatabaseReference mCompanyReference = mRootReference.child("company");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
-        setSupportActionBar(toolbar);
-
         session = new SessionManagement(getApplicationContext());
         session.checkLogin();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -77,10 +65,10 @@ public class MainScreenActivity extends AppCompatActivity
             }
         });
 
-        ChangeFragment(new NearMeShuttleFragment(), R.id.fragment_near_me_place1);
-        ChangeFragment(new NearMeShuttleFragment(), R.id.fragment_near_me_place2);
-        ChangeFragment(new NearMeShuttleFragment(), R.id.fragment_near_me_place3);
-        ChangeFragment(new NearMeShuttleFragment(), R.id.fragment_near_me_place4);
+        ChangeFragment(new NearMeShuttleFragment(), R.id.fragment_near_me_place1, 1);
+        ChangeFragment(new NearMeShuttleFragment(), R.id.fragment_near_me_place2, 2);
+        ChangeFragment(new NearMeShuttleFragment(), R.id.fragment_near_me_place3, 3);
+        ChangeFragment(new NearMeShuttleFragment(), R.id.fragment_near_me_place4, 4);
 
         rlOverlay = (RelativeLayout) findViewById(R.id.rlOverlay);
         rlOverlay.setVisibility(View.GONE);
@@ -93,31 +81,8 @@ public class MainScreenActivity extends AppCompatActivity
             }
         });
 
-
         profileName = (TextView)header.findViewById(R.id.nav_header_profile_name);
-        companyName = (TextView)header.findViewById(R.id.nav_header_profile_name);
 
-        mNameReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue(String.class)!=null) {
-                    String profileTextRetrieved = dataSnapshot.getValue(String.class);
-                    if (profileTextRetrieved.equals("")) {
-                        Intent intent = new Intent(MainScreenActivity.this, FirstTimeUserActivity.class);
-                        startActivity(intent);
-                    }
-                }
-                else{
-                    Intent intent = new Intent(MainScreenActivity.this, FirstTimeUserActivity.class);
-                    startActivity(intent);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -166,10 +131,19 @@ public class MainScreenActivity extends AppCompatActivity
     }
 
     public void myRideStatus(View view){
-
+        CurrentRequest.fragmentRequested = 5;
+        CurrentRequest.lat = 43.2571473;
+        CurrentRequest.lng = -79.8744521;
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
     }
 
-    public void ChangeFragment(Fragment fragment, int resource){
+    public void ChangeFragment(Fragment fragment, int resource, int sendNum){
+        String sendtext = sendNum + " Min";
+        Bundle bundle = new Bundle();
+        bundle.putString("fragnum",sendtext);
+        fragment.setArguments(bundle);
+
         FragmentManager fmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fmanager.beginTransaction();
         fragmentTransaction.replace(resource,fragment);
@@ -185,33 +159,14 @@ public class MainScreenActivity extends AppCompatActivity
     @Override
     protected void onStart(){
         super.onStart();
-        mNameReference.addValueEventListener(this);
-        mCompanyReference.addValueEventListener(this);
-    }
-
-    @Override
-    public void onDataChange(DataSnapshot dataSnapshot) {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View header =navigationView.getHeaderView(0);
         profileName = (TextView)header.findViewById(R.id.nav_header_profile_name);
         companyName = (TextView)header.findViewById(R.id.nav_header_company_name);
 
-        if(dataSnapshot.getValue(String.class)!=null){
-            String key = dataSnapshot.getKey();
-            if(key.equals("name")){
-                String profileTextRetrieved = dataSnapshot.getValue(String.class);
-                profileName.setText(profileTextRetrieved);
-            }
-            else if(key.equals("company")){
-                String companyTextRetrieved = dataSnapshot.getValue(String.class);
-                companyName.setText(companyTextRetrieved);
-            }
-        }
-    }
-
-    @Override
-    public void onCancelled(DatabaseError databaseError) {
-
+        profileName.setText(session.getUserName());
+        companyName.setText(session.getCompany());
+        CurrentRequest.initialize();
     }
 
     public static String EncodeEmail(String string){

@@ -87,11 +87,11 @@ public class LoginActivity extends AppCompatActivity {
      //   _loginButton.setEnabled(true);
         Intent intent = new Intent(this, MainScreenActivity.class);
         startActivity(intent);
-    }
 
-    public void onLoginFailed() {
-        Toast.makeText(LoginActivity.this, "zzzzzd", Toast.LENGTH_SHORT).show();
-        _loginButton.setEnabled(true);
+        email = EncodeEmail(_emailText.getText().toString());
+        if(session.getUserPhone().equals("") && session.getUserAddress().equals("")) {
+                startActivity(new Intent(LoginActivity.this, FirstTimeUserActivity.class));
+        }
     }
 
     public boolean validate() {
@@ -113,9 +113,8 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "user not found", Toast.LENGTH_SHORT).show();
                         }
                         else if(obj.getJSONObject(email).getString("password").equals(password)){
-                            UserDetails.email = email;
-                            UserDetails.password = password;
-                            session.createLoginSession(email,password);
+                            session.createLoginSession(email);
+                            session.setFirebaseSession(email);
                             final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
                                     R.style.Theme_AppCompat_DayNight);
                             progressDialog.setIndeterminate(true);
@@ -153,6 +152,7 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
 
     }
+
     public static String EncodeEmail(String string){
         return string.replace(".",",");
     }
