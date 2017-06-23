@@ -1,7 +1,12 @@
 package com.accmxxgmail.shuttlrdemo;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +26,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetAddress;
+
 public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_SIGNUP = 0;
 
@@ -39,6 +46,24 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        if(!isNetworkConnected()) {
+            AlertDialog.Builder builder;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder = new AlertDialog.Builder(LoginActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+            } else {
+                builder = new AlertDialog.Builder(LoginActivity.this);
+            }
+            builder.setTitle("No Network")
+                    .setMessage("Unable to connect to network")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
 
         session = new SessionManagement(getApplicationContext());
 
@@ -156,4 +181,20 @@ public class LoginActivity extends AppCompatActivity {
     public static String EncodeEmail(String string){
         return string.replace(".",",");
     }
+
+    private boolean isNetworkConnected(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo() != null;
+    }
+
+    private boolean isInternetConnected() {
+        try {
+            InetAddress ipAdd = InetAddress.getByName("google.com");
+            return !ipAdd.equals("");
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
+
 }

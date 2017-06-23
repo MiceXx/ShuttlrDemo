@@ -31,20 +31,12 @@
         android:textAlignment="center"
         android:textColor="@color/colorBlack"/>
 
-    <TextView
-        android:layout_marginTop="5dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/legal_page_main_text"
-        android:textSize="20dp"
-        android:textAlignment="center"
-        android:textColor="@color/colorBlack"/>
 
     <TextView
         android:layout_marginTop="5dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/copyright_text"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         android:textSize="20dp"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"/>

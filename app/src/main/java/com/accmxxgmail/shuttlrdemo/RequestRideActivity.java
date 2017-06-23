@@ -59,7 +59,6 @@ public class RequestRideActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     public void ComputeCost() {
