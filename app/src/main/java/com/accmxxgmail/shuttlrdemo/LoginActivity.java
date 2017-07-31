@@ -33,12 +33,10 @@ public class LoginActivity extends AppCompatActivity {
 
     SessionManagement session;
 
-    EditText _emailText;
-    EditText _passwordText;
-    Button _loginButton;
-    TextView _signupLink;
-    TextView _forgotpasswordLink;
-    Toast mToast;
+    private EditText _emailText, _passwordText;
+    private Button _loginButton;
+    private TextView _signupLink, _forgotpasswordLink;
+    private Toast mToast;
 
     String email;
     String password;
@@ -79,6 +77,9 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                if(mToast != null){
+                    mToast.cancel();
+                }
                 validate();
             }
         });
@@ -120,9 +121,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public boolean validate() {
-        boolean valid = false;
-
+    public void validate() {
         email = EncodeEmail(_emailText.getText().toString());
         password = _passwordText.getText().toString();
         String url = "https://active-mountain-168417.firebaseio.com/users.json";
@@ -132,9 +131,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(String s) {
                 if(!s.equals("null")){
                     try {
-                        if(mToast != null){
-                            mToast.cancel();
-                        }
                         JSONObject obj = new JSONObject(s);
                         if(!obj.has(email)){
                             mToast.makeText(LoginActivity.this, "user not found", Toast.LENGTH_SHORT).show();
@@ -176,8 +172,6 @@ public class LoginActivity extends AppCompatActivity {
 
         RequestQueue rQueue = Volley.newRequestQueue(LoginActivity.this);
         rQueue.add(request);
-        return valid;
-
     }
 
     public static String EncodeEmail(String string){
@@ -187,16 +181,6 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isNetworkConnected(){
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return connectivityManager.getActiveNetworkInfo() != null;
-    }
-
-    private boolean isInternetConnected() {
-        try {
-            InetAddress ipAdd = InetAddress.getByName("google.com");
-            return !ipAdd.equals("");
-        }
-        catch (Exception e) {
-            return false;
-        }
     }
 
 }
