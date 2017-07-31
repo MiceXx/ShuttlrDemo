@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     Button _loginButton;
     TextView _signupLink;
     TextView _forgotpasswordLink;
+    Toast mToast;
 
     String email;
     String password;
@@ -129,13 +130,14 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String s) {
-                if(s.equals("null")){
-                }
-                else{
+                if(!s.equals("null")){
                     try {
+                        if(mToast != null){
+                            mToast.cancel();
+                        }
                         JSONObject obj = new JSONObject(s);
                         if(!obj.has(email)){
-                            Toast.makeText(LoginActivity.this, "user not found", Toast.LENGTH_SHORT).show();
+                            mToast.makeText(LoginActivity.this, "user not found", Toast.LENGTH_SHORT).show();
                         }
                         else if(obj.getJSONObject(email).getString("password").equals(password)){
                             session.createLoginSession(email);
@@ -158,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }, 3000);
                         }
                         else {
-                            Toast.makeText(LoginActivity.this, "incorrect password", Toast.LENGTH_SHORT).show();
+                            mToast.makeText(LoginActivity.this, "incorrect password", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
