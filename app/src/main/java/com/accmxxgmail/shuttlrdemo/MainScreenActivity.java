@@ -139,9 +139,9 @@ public class MainScreenActivity extends AppCompatActivity
     }
 
     public void ChangeFragment(Fragment fragment, int resource, int sendNum){
-        String sendtext = sendNum + " Min";
+        String sendText = sendNum + " Min";
         Bundle bundle = new Bundle();
-        bundle.putString("fragnum",sendtext);
+        bundle.putString("fragnum",sendText);
         fragment.setArguments(bundle);
 
         FragmentManager fmanager = getSupportFragmentManager();

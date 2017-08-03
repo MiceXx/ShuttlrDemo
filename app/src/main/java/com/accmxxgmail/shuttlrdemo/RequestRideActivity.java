@@ -15,61 +15,68 @@ import android.widget.Button;
 
 public class RequestRideActivity extends AppCompatActivity {
 
-    static RequestRideActivity rractivity;
+    static RequestRideActivity requestRideActivity;
 
-    private ToggleButton toggleOneTime, toggleRecurring, questionMark;
-    private Button buttonBookT;
-    private TextView textView;
+    private ToggleButton mToggleOneTime, mToggleRecurring, mQuestionMark;
+    private Button mButtonBookTrip;
+    private TextView mTotalCost, mStartAddress, mEndAddress;
+    SessionManagement session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_ride);
 
-        rractivity = this;
+        session = new SessionManagement(getApplicationContext());
 
-        toggleOneTime = (ToggleButton)findViewById(R.id.toggle_one_time);
-        toggleRecurring = (ToggleButton)findViewById(R.id.toggle_recurring);
-        textView = (TextView)findViewById(R.id.text_total_cost);
-        questionMark = (ToggleButton)findViewById(R.id.toggle_question_mark);
-        buttonBookT = (Button)findViewById(R.id.button_book_trip);
+        requestRideActivity = this;
 
-        toggleOneTime.setOnClickListener(new View.OnClickListener() {
+        mToggleOneTime = (ToggleButton)findViewById(R.id.toggle_one_time);
+        mToggleRecurring = (ToggleButton)findViewById(R.id.toggle_recurring);
+        mTotalCost = (TextView)findViewById(R.id.tv_total_cost);
+        mQuestionMark = (ToggleButton)findViewById(R.id.toggle_question_mark);
+        mButtonBookTrip = (Button)findViewById(R.id.button_book_trip);
+        mStartAddress = (TextView)findViewById(R.id.tv_start_address);
+        mEndAddress = (TextView)findViewById(R.id.tv_end_address);
+
+        mToggleOneTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toggleOneTime.setChecked(true);
-                toggleOneTime.setPressed(true);
-                if(toggleRecurring.isChecked()){
-                    toggleRecurring.setChecked(false);
+                mToggleOneTime.setChecked(true);
+                mToggleOneTime.setPressed(true);
+                if(mToggleRecurring.isChecked()){
+                    mToggleRecurring.setChecked(false);
                 }
 
                 ComputeCost();
             }
         });
 
-        toggleRecurring.setOnClickListener(new View.OnClickListener() {
+        mToggleRecurring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toggleRecurring.setChecked(true);
-                toggleRecurring.setPressed(true);
-                if(toggleOneTime.isChecked()){
-                    toggleOneTime.setChecked(false);
+                mToggleRecurring.setChecked(true);
+                mToggleRecurring.setPressed(true);
+                if(mToggleOneTime.isChecked()){
+                    mToggleOneTime.setChecked(false);
                 }
                 ComputeCost();
             }
         });
+
+        mStartAddress.setText(session.getUserAddress());
 
     }
 
     public void ComputeCost() {
         int costType;
         String costAddon;
-        if (toggleOneTime.isChecked()) {
-            costType = 9;
+        if (mToggleOneTime.isChecked()) {
+            costType = 7;
             costAddon = ".00 single trip";
 
         } else {
-            costType = 150;
+            costType = 140;
             costAddon = ".00 per month";
         }
         String cost = String.valueOf(costType);
@@ -81,10 +88,10 @@ public class RequestRideActivity extends AppCompatActivity {
         ss1.setSpan(new RelativeSizeSpan(1.5f),1,1+c,0);
         ss1.setSpan(new ForegroundColorSpan(Color.GREEN),1,1+c,0);
         ss1.setSpan(new RelativeSizeSpan(0.6f),1+c,4+c,0);
-        textView.setText(ss1);
+        mTotalCost.setText(ss1);
 
-        buttonBookT.setEnabled(true);
-        questionMark.setVisibility(View.VISIBLE);
+        mButtonBookTrip.setEnabled(true);
+        mQuestionMark.setVisibility(View.VISIBLE);
     }
 
     public void SuccessfullyBooked(View view){
@@ -94,7 +101,7 @@ public class RequestRideActivity extends AppCompatActivity {
     }
 
     public static RequestRideActivity getInstance(){
-        return rractivity;
+        return requestRideActivity;
     }
 
     public void GoBack(View view){

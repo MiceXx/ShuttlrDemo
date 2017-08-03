@@ -98,7 +98,7 @@
                 android:layout_toRightOf="@id/pickup_location_icon"
                 android:layout_toEndOf="@id/pickup_location_icon"
                 android:gravity="center"
-                android:text="321 Placeholder Street, Unit 99\n A1B 2C3 Canada"
+                android:id="@+id/tv_start_address"
                 android:textSize="@dimen/small_text_size"
                 android:textColor="@color/colorWhite" />
 
@@ -141,6 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:id="@+id/tv_end_address"
                 android:text="456 Placeholder Ave\n C3B 2A1 Canada"
                 android:layout_toRightOf="@id/destination_icon"
                 android:layout_toEndOf="@id/destination_icon"
@@ -157,7 +158,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:id="@+id/text_total_cost"
+                android:id="@+id/tv_total_cost"
                 android:layout_height="match_parent"
                 android:textSize="20dp"
                 android:gravity="center"
