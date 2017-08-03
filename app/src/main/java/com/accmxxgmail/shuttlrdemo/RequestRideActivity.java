@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.widget.Button;
 
+import com.google.android.gms.location.places.ui.PlacePicker;
+
 
 public class RequestRideActivity extends AppCompatActivity {
 
@@ -65,7 +67,6 @@ public class RequestRideActivity extends AppCompatActivity {
         });
 
         mStartAddress.setText(session.getUserAddress());
-
     }
 
     public void ComputeCost() {
@@ -108,5 +109,13 @@ public class RequestRideActivity extends AppCompatActivity {
         finish();
     }
 
+    public void MapPlacePicker(View view){
+        PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
+        try {
+            startActivityForResult(intentBuilder.build(this),1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
