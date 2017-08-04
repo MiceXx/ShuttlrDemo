@@ -22,7 +22,7 @@ public class MainScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     private RelativeLayout rlOverlay;
-    TextView profileName, companyName;
+    TextView mProfileName, mCompanyName;
 
     SessionManagement session;
 
@@ -81,7 +81,7 @@ public class MainScreenActivity extends AppCompatActivity
             }
         });
 
-        profileName = (TextView)header.findViewById(R.id.nav_header_profile_name);
+        mProfileName = (TextView)header.findViewById(R.id.nav_header_profile_name);
 
     }
 
@@ -161,11 +161,11 @@ public class MainScreenActivity extends AppCompatActivity
         super.onStart();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View header =navigationView.getHeaderView(0);
-        profileName = (TextView)header.findViewById(R.id.nav_header_profile_name);
-        companyName = (TextView)header.findViewById(R.id.nav_header_company_name);
+        mProfileName = (TextView)header.findViewById(R.id.nav_header_profile_name);
+        mCompanyName = (TextView)header.findViewById(R.id.nav_header_company_name);
 
-        profileName.setText(session.getUserName());
-        companyName.setText(session.getCompany());
+        mProfileName.setText(session.getUserName());
+        mCompanyName.setText(session.getCompany());
         CurrentRequest.initialize();
     }
 

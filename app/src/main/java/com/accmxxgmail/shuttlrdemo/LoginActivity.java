@@ -9,7 +9,6 @@ import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,16 +25,14 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.InetAddress;
-
 public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_SIGNUP = 0;
 
     SessionManagement session;
 
-    private EditText _emailText, _passwordText;
-    private Button _loginButton;
-    private TextView _signupLink, _forgotpasswordLink;
+    private EditText mEmailText, mPasswordText;
+    private Button mLoginButton;
+    private TextView mSignupLink, mForgotPasswordLink;
     private Toast mToast;
 
     String email;
@@ -66,14 +63,14 @@ public class LoginActivity extends AppCompatActivity {
 
         session = new SessionManagement(getApplicationContext());
 
-        _emailText = (EditText)findViewById(R.id.text_username);
-        _passwordText = (EditText)findViewById(R.id.text_password);
-        _loginButton = (Button)findViewById(R.id.button_login);
-        _signupLink = (TextView)findViewById(R.id.link_signup);
-        _forgotpasswordLink = (TextView)findViewById(R.id.link_forgot_password);
+        mEmailText = (EditText)findViewById(R.id.text_username);
+        mPasswordText = (EditText)findViewById(R.id.text_password);
+        mLoginButton = (Button)findViewById(R.id.button_login);
+        mSignupLink = (TextView)findViewById(R.id.link_signup);
+        mForgotPasswordLink = (TextView)findViewById(R.id.link_forgot_password);
 
-        _loginButton.setEnabled(true);
-        _loginButton.setOnClickListener(new View.OnClickListener() {
+        mLoginButton.setEnabled(true);
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -84,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        _signupLink.setOnClickListener(new View.OnClickListener() {
+        mSignupLink.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -115,15 +112,15 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainScreenActivity.class);
         startActivity(intent);
 
-        email = EncodeEmail(_emailText.getText().toString());
+        email = EncodeEmail(mEmailText.getText().toString());
         if(session.getUserPhone().equals("") && session.getUserAddress().equals("")) {
                 startActivity(new Intent(LoginActivity.this, FirstTimeUserActivity.class));
         }
     }
 
     public void validate() {
-        email = EncodeEmail(_emailText.getText().toString());
-        password = _passwordText.getText().toString();
+        email = EncodeEmail(mEmailText.getText().toString());
+        password = mPasswordText.getText().toString();
         String url = "https://active-mountain-168417.firebaseio.com/users.json";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
 
@@ -145,8 +142,8 @@ public class LoginActivity extends AppCompatActivity {
                             progressDialog.setMessage("Authenticating...");
                             progressDialog.show();
 
-                            String email = _emailText.getText().toString();
-                            String password = _passwordText.getText().toString();
+                            String email = mEmailText.getText().toString();
+                            String password = mPasswordText.getText().toString();
 
                             new android.os.Handler().postDelayed(
                                     new Runnable() {

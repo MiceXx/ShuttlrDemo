@@ -98,7 +98,7 @@
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@id/pickup_location_icon"
                 android:layout_toEndOf="@id/pickup_location_icon"
-                android:gravity="center_vertical"
+                android:gravity="center_vertical|center_horizontal"
                 android:id="@+id/tv_start_address"
                 android:textSize="@dimen/small_text_size"
                 android:textColor="@color/colorWhite" />
@@ -142,7 +142,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
+                android:gravity="center_vertical|center_horizontal"
                 android:text="Pick a Destination"
                 android:id="@+id/tv_end_address"
                 android:layout_toRightOf="@id/destination_icon"

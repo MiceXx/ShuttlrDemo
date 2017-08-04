@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import com.google.android.gms.location.places.Place;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,44 +13,46 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SessionManagement {
-    SharedPreferences pref;
-    Editor editor;
-    Context _context;
+    SharedPreferences mPreferences;
+    Editor mEditor;
+    Context mContext;
 
     private static final String IS_LOGIN = "IsLoggedIn";
 
     public SessionManagement(Context context){
-        this._context = context;
-        pref = _context.getSharedPreferences("CHECK_LOGIN", 0);
-        editor = pref.edit();
+        this.mContext = context;
+        mPreferences = mContext.getSharedPreferences("CHECK_LOGIN", 0);
+        mEditor = mPreferences.edit();
     }
 
     public void createLoginSession(String email){
         // Storing login value as TRUE
-        editor.putBoolean(IS_LOGIN, true);
-        editor.putString("email", email);
-        editor.commit();
+        mEditor.putBoolean(IS_LOGIN, true);
+        mEditor.putString("email", email);
+        mEditor.commit();
     }
 
     public void InputSessionName(String name){
-        editor.putString("name", name);
-        editor.commit();
+        mEditor.putString("name", name);
+        mEditor.commit();
     }
 
     public void InputSessionAddress(String address){
-        editor.putString("address", address);
-        editor.commit();
+        mEditor.putString("address", address);
+        mEditor.commit();
     }
 
     public void InputSessionPhone(String phone){
-        editor.putString("phone", phone);
-        editor.commit();
+        mEditor.putString("phone", phone);
+        mEditor.commit();
     }
 
     public void InputSessionCompany(String company){
-        editor.putString("company", company);
-        editor.commit();
+        mEditor.putString("company", company);
+        mEditor.commit();
     }
+
+
 
     /**
      * Check login method wil check user login status
@@ -58,42 +61,42 @@ public class SessionManagement {
      * */
     public void checkLogin(){
         if(!this.isLoggedIn()){
-            Intent i = new Intent(_context, LoginActivity.class);
+            Intent i = new Intent(mContext, LoginActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            _context.startActivity(i);
+            mContext.startActivity(i);
         }
     }
 
     public String getUserEmail(){
-        return pref.getString("email", null);
+        return mPreferences.getString("email", null);
     }
 
     public String getUserName(){
-        return pref.getString("name", "");
+        return mPreferences.getString("name", "");
     }
     public String getUserAddress(){
-        return pref.getString("address", "");
+        return mPreferences.getString("address", "");
     }
     public String getUserPhone(){
-        return pref.getString("phone", "");
+        return mPreferences.getString("phone", "");
     }
     public String getCompany(){
-        return pref.getString("company", "");
+        return mPreferences.getString("company", "");
     }
 
     public void logoutUser(){
-        editor.clear();
-        editor.commit();
+        mEditor.clear();
+        mEditor.commit();
 
-        Intent i = new Intent(_context, LoginActivity.class);
+        Intent i = new Intent(mContext, LoginActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        _context.startActivity(i);
+        mContext.startActivity(i);
     }
 
     public boolean isLoggedIn(){
-        return pref.getBoolean(IS_LOGIN, false);
+        return mPreferences.getBoolean(IS_LOGIN, false);
     }
 
     public void setFirebaseSession(String str) {

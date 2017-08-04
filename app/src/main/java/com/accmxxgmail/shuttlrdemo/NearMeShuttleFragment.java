@@ -10,19 +10,19 @@ import android.widget.TextView;
 
 public class NearMeShuttleFragment extends Fragment {
 
-    TextView textView;
+    TextView mShuttleTime;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         String str = this.getArguments().getString("fragnum");
         View view = inflater.inflate(R.layout.fragment_near_me_shuttle, container, false);
-        textView = (TextView)view.findViewById(R.id.near_me_time);
-        textView.setText(str);
+        mShuttleTime = (TextView)view.findViewById(R.id.near_me_time);
+        mShuttleTime.setText(str);
         return view;
     }
 
     public void getTime(String text){
-        textView.setText(text);
+        mShuttleTime.setText(text);
     }
 }

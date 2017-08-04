@@ -44,7 +44,7 @@
             android:id="@+id/button_star_1"
             />
 
-        <ToggleButton
+        <Button
             android:layout_width="@dimen/main_center_icon_size"
             android:layout_height="@dimen/main_center_icon_size"
             android:layout_gravity="center"
