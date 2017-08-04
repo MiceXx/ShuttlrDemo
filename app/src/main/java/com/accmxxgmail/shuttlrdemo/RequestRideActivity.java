@@ -8,20 +8,25 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.Button;
 
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
-
 public class RequestRideActivity extends AppCompatActivity {
+
+    private int PLACE_PICKER_REQUEST;
 
     static RequestRideActivity requestRideActivity;
 
     private ToggleButton mToggleOneTime, mToggleRecurring, mQuestionMark;
     private Button mButtonBookTrip;
     private TextView mTotalCost, mStartAddress, mEndAddress;
+    private RelativeLayout mStartViewBox, mEndViewBox;
     SessionManagement session;
 
     @Override
@@ -40,6 +45,9 @@ public class RequestRideActivity extends AppCompatActivity {
         mButtonBookTrip = (Button)findViewById(R.id.button_book_trip);
         mStartAddress = (TextView)findViewById(R.id.tv_start_address);
         mEndAddress = (TextView)findViewById(R.id.tv_end_address);
+
+        mStartViewBox = (RelativeLayout)findViewById(R.id.view_start_box);
+        mEndViewBox = (RelativeLayout)findViewById(R.id.view_end_box);
 
         mToggleOneTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +75,22 @@ public class RequestRideActivity extends AppCompatActivity {
         });
 
         mStartAddress.setText(session.getUserAddress());
+
+        mStartViewBox.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                PLACE_PICKER_REQUEST = 1;
+                MapPlacePicker(view);
+            }
+        });
+
+        mEndViewBox.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                PLACE_PICKER_REQUEST = 2;
+                MapPlacePicker(view);
+            }
+        });
     }
 
     public void ComputeCost() {
@@ -112,9 +136,23 @@ public class RequestRideActivity extends AppCompatActivity {
     public void MapPlacePicker(View view){
         PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
         try {
-            startActivityForResult(intentBuilder.build(this),1);
+            Intent intent = intentBuilder.build(this);
+            startActivityForResult(intent,PLACE_PICKER_REQUEST);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK) {
+            Place place = PlacePicker.getPlace(this, data);
+            String placeString = place.getAddress().toString();
+            if(PLACE_PICKER_REQUEST == 1){
+                mStartAddress.setText(placeString);
+            }
+            else if(PLACE_PICKER_REQUEST == 2){
+                mEndAddress.setText(placeString);
+            }
         }
     }
 
