@@ -131,9 +131,9 @@ public class MainScreenActivity extends AppCompatActivity
     }
 
     public void myRideStatus(View view){
-        CurrentRequest.fragmentRequested = 5;
-        CurrentRequest.lat = 43.2571473;
-        CurrentRequest.lng = -79.8744521;
+        CurrentRequest.mFragment = 5;
+        CurrentRequest.mLat = 43.2571473;
+        CurrentRequest.mLong = -79.8744521;
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }

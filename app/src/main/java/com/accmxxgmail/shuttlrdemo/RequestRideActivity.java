@@ -10,7 +10,6 @@ import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.Button;
 
@@ -149,9 +148,11 @@ public class RequestRideActivity extends AppCompatActivity {
             String placeString = place.getAddress().toString();
             if(PLACE_PICKER_REQUEST == 1){
                 mStartAddress.setText(placeString);
+                CurrentRequest.mPlaceStart = place;
             }
             else if(PLACE_PICKER_REQUEST == 2){
                 mEndAddress.setText(placeString);
+                CurrentRequest.mPlaceEnd = place;
             }
         }
     }

@@ -52,13 +52,6 @@ public class SessionManagement {
         mEditor.commit();
     }
 
-
-
-    /**
-     * Check login method wil check user login status
-     * If false it will redirect user to login page
-     * Else won't do anything
-     * */
     public void checkLogin(){
         if(!this.isLoggedIn()){
             Intent i = new Intent(mContext, LoginActivity.class);

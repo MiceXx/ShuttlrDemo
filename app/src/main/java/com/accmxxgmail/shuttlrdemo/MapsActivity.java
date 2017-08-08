@@ -29,8 +29,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, PlaceSelectionListener {
@@ -41,19 +41,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     MarkerOptions mMapMarker = new MarkerOptions();
 
-    GoogleApiClient mGoogleApiClient;
-
     LocationManager locationManager;
 
     boolean initialized = false;
 
     private static final String LOG_TAG = "PlaceSelectionListener";
-    private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
-            new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
     private static final int REQUEST_SELECT_PLACE = 1000;
     float ZOOM = 16;
-    private TextView locationTextView;
-    private TextView attributionsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,15 +77,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     double lng = location.getLongitude();
                     if(!initialized){
                         initialized = true;
-                        if(CurrentRequest.fragmentRequested!=0){
-                            goToLocationZoom(CurrentRequest.lat,CurrentRequest.lng,ZOOM);
+                        if(CurrentRequest.mFragment!=0){
+                            goToLocationZoom(CurrentRequest.mLat,CurrentRequest.mLong,ZOOM);
                             CurrentRequest.initialize();
                         }
                         else {
                             goToLocationZoom(lat, lng, ZOOM);
                         }
                     }
-                    moveLocationMarker(lat,lng);
                 }
 
                 @Override
@@ -118,15 +111,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     double lng = location.getLongitude();
                     if(!initialized){
                         initialized = true;
-                        if(CurrentRequest.fragmentRequested!=0){
-                            goToLocationZoom(CurrentRequest.lat,CurrentRequest.lng,ZOOM);
+                        if(CurrentRequest.mFragment!=0){
+                            goToLocationZoom(CurrentRequest.mLat,CurrentRequest.mLong,ZOOM);
                             CurrentRequest.initialize();
                         }
                         else {
                             goToLocationZoom(lat, lng, ZOOM);
                         }
                     }
-                    moveLocationMarker(lat,lng);
                 }
 
                 @Override
@@ -150,8 +142,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 getFragmentManager().findFragmentById(R.id.place_fragment);
         autocompleteFragment.setOnPlaceSelectedListener(this);
         autocompleteFragment.setHint("Search a Location");
-
-        //autocompleteFragment.setBoundsBias(BOUNDS_MOUNTAIN_VIEW);
     }
 
 
@@ -187,31 +177,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        locationManager = (LocationManager)this.getSystemService(LOCATION_SERVICE);
+
         if ((ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) ||
                 ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
 
             googleMap.setPadding(0,210,20,20);
 
-        }
+            if(CurrentRequest.mPlaceStart != null && CurrentRequest.mPlaceEnd != null) {
+                googleMap.addMarker(new MarkerOptions()
+                        .position(CurrentRequest.mPlaceStart.getLatLng())
+                        .title("Start")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 
+                googleMap.addMarker(new MarkerOptions()
+                        .position(CurrentRequest.mPlaceEnd.getLatLng())
+                        .title("Destination"));
+            }
+        }
     }
 
     private void goToLocationZoom(double lat, double lng, float zoom) {
-        mMap.clear();
         LatLng ll = new LatLng(lat, lng);
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, zoom);
 
         mMapMarker.position(ll);
-        mMap.addMarker(mMapMarker);
         mMap.moveCamera(update);
-    }
-
-    private void moveLocationMarker(double lat, double lng) {
-        mMap.clear();
-        LatLng ll = new LatLng(lat, lng);
-        mMapMarker.position(ll);
-        mMap.addMarker(mMapMarker);
     }
 
     public void LocateSelf(View view) {
