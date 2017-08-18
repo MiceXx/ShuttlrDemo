@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Recent Trips"
+        android:text="@string/recent_trips"
         android:textSize="20dp"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"
@@ -26,7 +26,7 @@
         android:layout_marginTop="5dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="List of recent trips"
+        android:text="@string/list_recent_trips"
         android:textSize="20dp"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"/>

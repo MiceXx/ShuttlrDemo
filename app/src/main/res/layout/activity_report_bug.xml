@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        android:text="Subject"
+        android:text="@string/subject"
         android:textColor="@color/colorBlack"
         android:textStyle="bold"
         android:id="@+id/textViewSubject"
@@ -30,14 +30,14 @@
         android:textSize="20dp"
         android:layout_marginBottom="20dp"
         android:textColor="@color/colorBlack"
-        android:text="ShuttlrDemo bug report" />
+        android:text="@string/bug_report" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:textStyle="bold"
-        android:text="Message"
+        android:text="@string/message"
         android:id="@+id/textViewMsgHeader"
         android:layout_below="@+id/EditTextSubject"
         android:layout_alignParentLeft="true"
@@ -51,7 +51,7 @@
         android:lines="4"
         android:id="@+id/editTextMSG"
         android:textColorHint="@color/colorLightGrey"
-        android:hint="Please include a description of the bug"
+        android:hint="@string/bug_description"
         android:layout_below="@+id/textViewMsgHeader"
         android:elevation="2dp"
         android:layout_centerHorizontal="true" />
@@ -59,7 +59,7 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Send"
+        android:text="@string/send"
         android:id="@+id/buttonSendBugReport"
         android:layout_below="@+id/editTextMSG"
         android:layout_centerHorizontal="true"

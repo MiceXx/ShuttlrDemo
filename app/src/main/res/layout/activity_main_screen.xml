@@ -51,7 +51,7 @@
 
                     <ImageButton
                         android:id="@+id/toolbar_button_map"
-                        android:contentDescription="Activity bar maps link"
+                        android:contentDescription="@string/maps_description"
                         android:onClick="toolbarClickMap"
                         android:layout_width="30dp"
                         android:layout_height="30dp"

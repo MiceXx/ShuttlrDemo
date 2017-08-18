@@ -19,8 +19,10 @@
         <ImageButton
             android:layout_width="@dimen/main_car_icon_size"
             android:layout_height="@dimen/main_car_icon_size"
+            android:contentDescription="@string/car_image_description"
             android:layout_gravity="center"
             android:layout_marginRight="50dp"
+            android:layout_marginEnd="50dp"
             android:background="@drawable/icon_car_wifi" />
 
         <ImageButton
@@ -28,6 +30,8 @@
             android:layout_height="@dimen/main_center_icon_size"
             android:layout_gravity="center"
             android:layout_marginRight="18dp"
+            android:contentDescription="@string/location_marker_description"
+            android:layout_marginEnd="18dp"
             android:background="@drawable/icon_map_marker"
             android:backgroundTint="@color/colorDarkGrey"
             android:id="@+id/button_locate_1"/>
@@ -37,6 +41,7 @@
             android:layout_height="@dimen/main_center_icon_size"
             android:layout_gravity="center"
             android:layout_marginRight="18dp"
+            android:layout_marginEnd="18dp"
             android:background="@drawable/icon_toggle_star"
             android:textOff=""
             android:textOn=""
@@ -49,6 +54,7 @@
             android:layout_height="@dimen/main_center_icon_size"
             android:layout_gravity="center"
             android:layout_marginRight="18dp"
+            android:layout_marginEnd="18dp"
             android:textOff=""
             android:textOn=""
             android:background="@drawable/icon_toggle_question_mark"
